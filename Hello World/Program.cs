@@ -1,40 +1,61 @@
 ﻿using System;
-namespace Alpahbet
+namespace Alphabet
 {
     class program
     {
         static void Main(string[] args)
         {
-            Alphabet();
-            AlphabetZA();
-            AlphabetEveryother();
+            Console.WriteLine(Alphabet());
+            Console.WriteLine(AlphabetZA());
+            Console.Write("How many letters would you like to skip: ");
+            string UserInput = Console.ReadLine();
+            if(int.TryParse(UserInput, out int value))
+            {
+                if(int.Parse(UserInput) >= 26 || int.Parse(UserInput) < 0)
+                {
+                    Console.WriteLine("Haha! Very Funny");
+                }
+                else
+                {
+                    int numbertostring = int.Parse(UserInput);
+                    Console.WriteLine(AlphabetSkip(numbertostring));
+                }
+            }
+            else
+            {
+                Console.WriteLine("Entry is Invalid!");
+            }
         }
-        static void Alphabet()
+        static string Alphabet()
         {
             string Alphabet = "";
             for (char alpha = 'A'; alpha <= 'Z'; alpha++)
             {
-                Alphabet += alpha.ToString();
+                Alphabet += alpha;
             }
-            Console.WriteLine(Alphabet);
+            return Alphabet;
         }
-        static void AlphabetZA()
+        static string AlphabetZA()
         {
             string AlphabetZA = "";
             for (char alpha = 'Z'; alpha >= 'A'; alpha--)
             {
-                AlphabetZA += alpha.ToString();
+                AlphabetZA += alpha;
             }
-            Console.WriteLine(AlphabetZA);
+            return AlphabetZA;
         }
-        static void AlphabetEveryother()
+        static string AlphabetSkip(int skip)
         {
-            string AlphabetEveryother = "";
-            for (char alpha = 'A'; alpha <= 'Z'; alpha = (char)(alpha + 2))
+            string AlphabetSkip = "";
+            for (char alpha = 'A'; alpha <= 'Z';)
             {
-                AlphabetEveryother += alpha.ToString();
+                AlphabetSkip += alpha;
+                for(int i = 0; i <= skip; i++)
+                {
+                    alpha++;
+                }
             }
-            Console.WriteLine(AlphabetEveryother);
+            return AlphabetSkip;
         }
     }
 }
